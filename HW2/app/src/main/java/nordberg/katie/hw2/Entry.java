@@ -32,7 +32,7 @@ public class Entry extends Activity {
         // It's important to not clog the main thread (the UI thread) with stuff that can be done in the background
         // I pass the context to the thread only because the context is needed for some of the function calls.
         TaskThread tt = new TaskThread(this);
-        tt.run();
+        tt.start();
 
     }
 
