@@ -30,7 +30,7 @@ public class TaskThread extends Thread {
             Log.d("Katie", "Permission granted");
             // Get the last location and pass it to the anonymous class
             fusedLocationClient.getLastLocation().addOnSuccessListener(
-                new OnSuccessListener<>() {
+                new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         Log.d("Katie", "Success getting Thread");
