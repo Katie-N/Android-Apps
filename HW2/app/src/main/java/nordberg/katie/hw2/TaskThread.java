@@ -39,18 +39,17 @@ public class TaskThread extends Thread {
                     @Override
                     public void onSuccess(Location location) {
                         Log.d("Katie", "Success getting Thread");
-                        Log.d("Katie", "Location: " + location.getLatitude() + ", " + location.getLongitude());
 
                         // Apparently the onSuccess function runs on the main thread by default...
                         // And there is a check that prevents http stuff from happening on the main thread.
                         // So I am making an anonymous thread inside of the onSuccess function
                         new Thread(() -> {
                             try {
-                                URL url = new URL("http://10.0.2.2:8080/?lat=30.0&lon=30.0");
+                                URL url = new URL("http://10.0.2.2:8080/?lat=" + location.getLatitude() + "&lon=" + location.getLongitude());
                                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                                 conn.setDoOutput(true);
                                 conn.connect();
-                                if (conn.getResponseCode() != 200) {
+                                if (conn.getResponseCode() == 200) {
                                     Log.d("Katie", "It worked!");
                                 }
                             } catch (IOException e) {
