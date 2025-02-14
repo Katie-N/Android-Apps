@@ -1,0 +1,3 @@
+input tap 250 250
+sleep 25;
+input tap 350 250
