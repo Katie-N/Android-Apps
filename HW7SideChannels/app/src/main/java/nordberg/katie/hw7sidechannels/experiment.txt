@@ -1,0 +1,3 @@
+Which function / functions did you test for side channels?
+What experiments did you do to determine if the side channels exists?
+What information did the side channel leak (write "none" if there is no leak)?
