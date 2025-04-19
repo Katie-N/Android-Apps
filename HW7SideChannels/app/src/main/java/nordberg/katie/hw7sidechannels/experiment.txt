@@ -1,3 +1,28 @@
-Which function / functions did you test for side channels?
-What experiments did you do to determine if the side channels exists?
-What information did the side channel leak (write "none" if there is no leak)?
+1. Which function / functions did you test for side channels?
+I used the getApplicationInfo() function to test for a timing side channel.
+
+2. What experiments did you do to determine if the side channels exists?
+I calculated the time difference between starting and ending the getApplicationInfo function.
+I took 10000 samples and averaged the results like we did in class to avoid outliers.
+I also ran this app multiple times and each time I got the result of the present app taking significantly more time than the others.
+Finally, I noticed that the target package's time seemed to fall right in between the time for the known absent package and the known present package.
+Because I expected the time for both absent packages to be much closer together I decided to investigate it further.
+So I tried checking for the target package last instead of first which resulted in a time even smaller than the known absent package.
+Then I tried checking for the known present package first instead of second or third.
+Similar to before, this resulted in a larger time for the present package and an extremely similar time for the known absent package and the target package.
+Based on these observations, it seems that the order that packages are checked in matters for this timing side channel attack.
+
+Run 1)
+Order: Target; Absent; Present
+Output: Absent: 208680   Present: 288934   Maybe: 244956
+
+Run 2)
+Order: Absent; Present; Target
+Output:  Absent: 222744   Present: 312608   Maybe: 208100
+
+Run 3)
+Order: Present; Absent; Target
+Output: Absent: 209238   Present: 434582   Maybe: 206867
+
+3. What information did the side channel leak (write "none" if there is no leak)?
+It leaked whether a package is installed on the device as the experiments took longer for packages that were installed than for those which were not.
